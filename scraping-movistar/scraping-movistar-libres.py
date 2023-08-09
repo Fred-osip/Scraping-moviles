@@ -8,14 +8,14 @@ import timeit #para medir el tiempo de ejecución del código
 # Inicia el tiempo de ejecución
 inicio = timeit.default_timer()
 
-
+numero_paginas = 2
 
 driver = webdriver.Chrome()
 base_url = 'https://tienda.movistar.com.pe/celulares/liberados?p={}'
 
 datos = []
 
-for page in range(1, 3):
+for page in range(1, numero_paginas + 1):
     url = base_url.format(page)
     driver.get(url)
     time.sleep(3)  # Esperar a que se cargue la página completamente
@@ -64,8 +64,8 @@ for page in range(1, 3):
 driver.quit()
 
 df = pd.DataFrame(datos)
-df.to_excel('datos_movistar_v5.xlsx', index=False)
-print("Los datos se han exportado correctamente a 'datos_movistar_v4.xlsx'.")
+df.to_excel('movistar-liberados.xlsx', index=False)
+print("Los datos se han exportado correctamente a 'movistar-liberados.xlsx'.")
 
 # Finaliza el tiempo de ejecución
 fin = timeit.default_timer()
